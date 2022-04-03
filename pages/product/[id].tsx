@@ -7,11 +7,14 @@ import Styles from './../../styles/ProductsDetails';
 import Header from './../../components/header'
 import Footer from './../../components/footer'
 import { MdStar, MdStarHalf, MdStarOutline } from 'react-icons/md';
+import { useCart } from '../../hooks/useCart'
 
 export default function ProductDetail() {
   const [product, setProduct] = useState({ title: '', price: '', thumbnail: '', categories: [], description: '', color: '', sizes: []});
   const router = useRouter();
   const { id } = router.query;
+
+  const {addProduct} = useCart();
 
   useEffect(() => {
     getProduct(id)
@@ -67,7 +70,7 @@ export default function ProductDetail() {
 
           <Styles.Price>{price}</Styles.Price>
 
-          <Styles.Button onClick={() => console.log()}>
+          <Styles.Button onClick={() => addProduct(JSON.stringify(id), title, price, 1)}>
             Add to cart
           </Styles.Button>
         </Styles.Detail>

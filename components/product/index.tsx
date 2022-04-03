@@ -3,8 +3,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { MdStar, MdStarHalf, MdStarOutline } from 'react-icons/md';
 import { ProductsProps } from './types';
+import { useCart } from '../../hooks/useCart'
 
 export default function Product({ id, title, price, thumbnail, categories, children }: ProductsProps) {
+  const {addProduct} = useCart();
+
   return (
     <Styles.Box>
         <Link href={`/product/${id}`} passHref={true}>
@@ -32,7 +35,7 @@ export default function Product({ id, title, price, thumbnail, categories, child
 
         {children}
 
-        <Styles.Button>Add to cart</Styles.Button>
+        <Styles.Button onClick={() => addProduct(id, title, price, 1)}>Add to cart</Styles.Button>
       </Styles.Box>
   ) 
 }

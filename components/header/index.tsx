@@ -3,8 +3,15 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { MdSearch, MdPermIdentity, MdShoppingCart } from 'react-icons/md';
 import BoxCart from '../boxCart';
+import { useState } from 'react';
 
 export default function Header() {
+  const [visible, setVisible] = useState(false);
+  
+  const showCart = () => {
+    setVisible(true)
+  }
+
   return (
     <Styles.MainHeader>
       <Styles.AlignSection>
@@ -32,12 +39,14 @@ export default function Header() {
         <Styles.Icon><MdPermIdentity /></Styles.Icon>
 
         <Styles.ContainerBoxCart>
-          <Styles.Icon>
+          <Styles.Icon onClick={showCart}>
             <MdShoppingCart />
               <Styles.CartItem>1</Styles.CartItem>
           </Styles.Icon>          
 
-          <BoxCart onClick={() => console.log('')} />
+          {visible && 
+            <BoxCart onClick={() => setVisible(false)} />
+          }
         </Styles.ContainerBoxCart>
 
       </Styles.AlignSection>
