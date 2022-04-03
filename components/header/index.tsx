@@ -2,6 +2,7 @@ import Styles from './style';
 import Image from 'next/image'
 import Link from 'next/link'
 import { MdSearch, MdPermIdentity, MdShoppingCart } from 'react-icons/md';
+import BoxCart from '../boxCart';
 
 export default function Header() {
   return (
@@ -29,9 +30,18 @@ export default function Header() {
     
         <Styles.Icon><MdSearch /></Styles.Icon>
         <Styles.Icon><MdPermIdentity /></Styles.Icon>
-        <Styles.Icon><MdShoppingCart /></Styles.Icon>                  
-      </Styles.AlignSection>
 
+        <Styles.ContainerBoxCart>
+          <Styles.Icon>
+            <MdShoppingCart />
+              <Styles.CartItem>1</Styles.CartItem>
+          </Styles.Icon>          
+
+          <BoxCart onClick={() => console.log('')} />
+        </Styles.ContainerBoxCart>
+
+      </Styles.AlignSection>
+      
     </Styles.MainHeader>
   ) 
 }

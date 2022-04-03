@@ -45,10 +45,31 @@ const Icon = styled.span`
   position: relative;
 `;
 
+const ContainerBoxCart = styled.aside`
+  position: relative;
+`;
+
+const CartItem = styled.span`
+  position: absolute;
+  top: -7px;
+  right: -15px;
+  background-color: red;
+  color: #fff;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 8px;
+  width: 15px;
+  height: 15px;
+  line-height: 15px;
+  text-align: center;
+`;
+
 export default {
   MainHeader,
   AlignSection,
   MenuHeader,
   FreeShipping,
   Icon,
+  ContainerBoxCart,
+  CartItem
 };
