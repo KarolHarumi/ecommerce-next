@@ -4,10 +4,12 @@ import Link from 'next/link'
 import { MdSearch, MdPermIdentity, MdShoppingCart } from 'react-icons/md';
 import BoxCart from '../boxCart';
 import { useState } from 'react';
+import { useCart } from '../../hooks/useCart'
 
 export default function Header() {
   const [visible, setVisible] = useState(false);
-  
+  const {total} = useCart();
+
   const showCart = () => {
     setVisible(true)
   }
@@ -41,7 +43,9 @@ export default function Header() {
         <Styles.ContainerBoxCart>
           <Styles.Icon onClick={showCart}>
             <MdShoppingCart />
-              <Styles.CartItem>1</Styles.CartItem>
+            { total > 0 && 
+              <Styles.CartItem>{ total }</Styles.CartItem>
+            } 
           </Styles.Icon>          
 
           {visible && 
