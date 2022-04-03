@@ -4,10 +4,10 @@ import Link from 'next/link'
 import { MdStar, MdStarHalf, MdStarOutline } from 'react-icons/md';
 import { ProductsProps } from './types';
 
-export default function Product({ title, price, thumbnail, categories, children }: ProductsProps) {
+export default function Product({ id, title, price, thumbnail, categories, children }: ProductsProps) {
   return (
     <Styles.Box>
-        <Link href={`/`} passHref={true}>
+        <Link href={`/product/${id}`} passHref={true}>
 
           <div>
             <Image src={thumbnail} alt={title} width={150} height={150} />

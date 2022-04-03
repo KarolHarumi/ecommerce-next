@@ -7,7 +7,7 @@ export type ProductsProps = {
   in_stock?: string;
   images?: Array<string>;
   categories?: Array<string>;
-  colors?: string;
+  color?: string;
   sizes?: Array<string>;
   children?: any;
 };
