@@ -3,11 +3,13 @@ import Head from 'next/head'
 import Styles from '../styles/Home'
 import Header from './../components/header'
 import Footer from './../components/footer'
+import SearchField from './../components/searchField'
 import Product from './../components/product'
 import { getProducts } from './../services/products';
 
 export default function Home() {
   const [list, setList] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     getProducts()
@@ -28,6 +30,7 @@ export default function Home() {
 
       <Styles.Main>
         <Styles.MainTitle>Products</Styles.MainTitle>
+        <SearchField onChange={(text) => setSearch(text.target.value)} />
 
         <Styles.Grid>
           {list.map(item => (
