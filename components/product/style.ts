@@ -18,12 +18,16 @@ const Title = styled.h2`
   width: 180px;
 `;
 
-const SubTitle = styled.h3`
+const Categories = styled.h3`
   font-size: 11px;
   font-weight: normal;
   color: #6f6f6f;
   margin: 5px 0 0;
   max-width: 200px;
+
+  span + span:before {
+    content: ' | ';
+  }
 `;
 
 const Rate = styled.div`
@@ -54,7 +58,7 @@ const Button = styled.span`
 export default {
   Box,
   Title,
-  SubTitle,
+  Categories,
   Button,
   Rate,
   Price,

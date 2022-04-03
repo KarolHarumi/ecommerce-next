@@ -2,16 +2,21 @@ import Styles from './style';
 import Image from 'next/image'
 import Link from 'next/link'
 import { MdStar, MdStarHalf, MdStarOutline } from 'react-icons/md';
+import { ProductsProps } from './types';
 
-export default function Product() {
+export default function Product({ title, price, thumbnail, categories, children }: ProductsProps) {
   return (
     <Styles.Box>
         <Link href={`/`} passHref={true}>
 
           <div>
-            <Image src='/product_mock.jpeg' alt={''} width={150} height={150} />
-            <Styles.Title>Title</Styles.Title>
-            <Styles.SubTitle>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Styles.SubTitle>
+            <Image src={thumbnail} alt={title} width={150} height={150} />
+            <Styles.Title>{ title }</Styles.Title>
+            <Styles.Categories>
+              {categories.map((cat, index) => (
+                <span key={index}>{cat}</span>
+              ))}
+            </Styles.Categories>
             
             <Styles.Rate>
               <MdStar />
@@ -21,9 +26,11 @@ export default function Product() {
               <MdStarOutline />
             </Styles.Rate>
 
-            <Styles.Price>$1.99 CAD</Styles.Price>
+            <Styles.Price>{price}</Styles.Price>
           </div>
         </Link>
+
+        {children}
 
         <Styles.Button>Add to cart</Styles.Button>
       </Styles.Box>

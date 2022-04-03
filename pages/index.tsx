@@ -1,10 +1,21 @@
+import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Styles from '../styles/Home'
 import Header from './../components/header'
 import Footer from './../components/footer'
 import Product from './../components/product'
+import { getProducts } from './../services/products';
 
 export default function Home() {
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    getProducts()
+      .then(items => {
+        setList(items)
+      })
+  }, []);
+
   return (
     <>
       <Head>
@@ -19,9 +30,17 @@ export default function Home() {
         <Styles.MainTitle>Products</Styles.MainTitle>
 
         <Styles.Grid>
-          <Product />
-          <Product />
-          </Styles.Grid>
+          {list.map(item => (
+            <Product 
+              key={item.id} 
+              title={item.title} 
+              thumbnail={item.thumbnail}
+              id={item.id}
+              price={item.price} 
+              categories={item.categories} 
+            />
+          ))}
+        </Styles.Grid>
       </Styles.Main>
 
       <Footer />
