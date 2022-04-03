@@ -1,4 +1,8 @@
+# E-commerce Next.js
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+![Alt text](public/screenshot.png "Home Screen")
 
 ## Getting Started
 
@@ -14,21 +18,61 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Dependencies
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- Typescript
+- Styled-components
+- React-icons
 
-## Learn More
+## API
 
-To learn more about Next.js, take a look at the following resources:
+- /api/products: returns list of products;
+- /api/products/:productId: returns detailed information for the product with the specified productId
+- /api/products?category=Socks: returns content filtered by category
+- /api/products?color=White: returns content filtered by color
+- /api/products?size=Large: returns content filtered by size
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## TODO
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [x] I can browse a list of all products available in the store.
 
-## Deploy on Vercel
+- [ ] I can filter the products list using Category, Size and Color filters that leverage the API to filter the collection.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [ ] I can sort the products by price even though the API doesn't provide that functionality.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [x] Clicking on a product takes me to a Product Detail Page (PDP) with all the info and images for the product.
+
+- [x] I can add a product currently in stock to cart, which is stored locally on my browser.
+
+- [x] I can view products currently in my cart with quantities and price.
+
+## Improvements
+
+- [ ] Responsive version
+
+- [ ] Unit tests
+
+- [ ] Component tests
+
+## How to implement filters using query string
+
+1. Create a filter component with all available filers: Color, Size and Categories.
+2. Then, on services > products send as parameter of getProducts: filter and item
+
+```
+export function getProducts(filter, item) {
+return fetch(`http://localhost:5424/api/products?${filter}=${item}`)
+.then(data => data.json())
+}
+```
+
+## How to implement price filters
+
+1. Create a filter component with price: low to hight and hight to low
+2. Create a function to sort data
+
+```
+products.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+```
+
+3. Then return sorted data to the main component ProductsList
