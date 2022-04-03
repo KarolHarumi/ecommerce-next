@@ -17,16 +17,7 @@ const MainTitle = styled.h1`
   font-size: 31px;
 `;
 
-const Grid = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 800px;
-`;
-
 export default {
   Main,
-  MainTitle,
-  Grid,
+  MainTitle
 };
